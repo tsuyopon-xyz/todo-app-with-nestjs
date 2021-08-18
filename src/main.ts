@@ -4,6 +4,10 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors({
+    // localhost:3001で起動しているNext.jsアプリからのアクセスを受け付ける想定
+    origin: 'http://localhost:3001',
+  });
   const config = new DocumentBuilder()
     .setTitle('Todos API')
     .setDescription('Todo情報を操作するAPIを提供')
